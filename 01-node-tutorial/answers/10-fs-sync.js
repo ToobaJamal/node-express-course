@@ -1,5 +1,10 @@
-const { readFileSync, writeFileSync } = require('fs')
+const fs = require("fs");
 
-writeFileSync('./temporary/fileA.txt', "line1 /n line 2 /n line3", {flag:'a'})
+const tempFilePath = "../temporary/fileA.txt"
 
-readFileSync('../temporary/fileA.txt', 'utf8')
+firstLine = fs.writeFileSync(tempFilePath, "My first line");
+fs.writeFileSync(tempFilePath, "Second line", { flag: "a+" });
+fs.writeFileSync(tempFilePath, "Third line", { flag: "a+" });
+
+const fileContents = fs.readFileSync(tempFilePath, { encoding: "utf-8" });
+console.log('fileContents: ' + fileContents);
